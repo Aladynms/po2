@@ -30,7 +30,7 @@ namespace MatrixLib
 
         public bool Equals(Matrix2D? other)
         {
-            if (other == null) return false;
+            if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
 
             return
@@ -42,7 +42,9 @@ namespace MatrixLib
 
         public override bool Equals(object? obj)
         {
-            return base.Equals(obj);
+            if (obj is null) return false;
+            if (!(obj is Matrix2D)) return false;
+            return Equals((Matrix2D)obj);
         }
 
         public override int GetHashCode()
