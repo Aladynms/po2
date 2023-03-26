@@ -8,15 +8,19 @@ namespace MatrixLib
 {
     public class Matrix2D : IEquatable<Matrix2D>
     {
+        #region === Int ===
+
         private int A { get; init; }
         private int B { get; init; }
         private int C { get; init; }
         private int D { get; init; }
 
+        #endregion
+
+        #region === Methods && Constructors ===
 
         public static Matrix2D Zero { get;  } = new(0, 0, 0, 0);
         public static Matrix2D Id { get; } = new();
-
 
         public Matrix2D(int a, int b, int c, int d)
         {
@@ -29,6 +33,8 @@ namespace MatrixLib
         public Matrix2D() : this(1, 0, 0, 1) { }
 
         public override string ToString() => $"[[{A}, {B}], [{C}, {D}]]";
+
+        #endregion
 
         #region === Equals ===
 
