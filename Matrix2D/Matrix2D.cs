@@ -34,6 +34,17 @@ namespace MatrixLib
 
         public override string ToString() => $"[[{A}, {B}], [{C}, {D}]]";
 
+        public static Matrix2D Transpose (Matrix2D left) =>
+            new(
+                left.A,
+                left.C,
+                left.B,
+                left.D
+                );
+
+        public static int Determinant(Matrix2D left) => left.A * left.D - left.B * left.C;
+
+
         #endregion
 
         #region === Equals ===
@@ -73,6 +84,7 @@ namespace MatrixLib
         }
         public static bool operator != (Matrix2D? left, Matrix2D? right) => 
             !(left == right);
+
         
         public static Matrix2D operator + (Matrix2D left, Matrix2D right) => 
             new(
@@ -88,6 +100,7 @@ namespace MatrixLib
                 left.C - right.C,
                 left.D - right.D
                 );
+
 
         public static Matrix2D operator * (Matrix2D left, Matrix2D right) =>
             new(
@@ -105,14 +118,27 @@ namespace MatrixLib
                 left.D * s
                 );
 
-
-        public static Matrix2D operator * (int s, Matrix2D left) =>
+        public static Matrix2D operator * (int s, Matrix2D right) =>
             new(
-                left.A * s,
-                left.B * s,
-                left.C * s,
-                left.D * s
+                right.A * s,
+                right.B * s,
+                right.C * s,
+                right.D * s
                 );
+
+
+        public static Matrix2D operator - (Matrix2D left) =>
+            new(
+                left.A * -1,
+                left.B * -1,
+                left.C * -1,
+                left.D * -1
+                );
+
+
+
+
+
 
         public static Matrix2D Parse(string s)
         {
