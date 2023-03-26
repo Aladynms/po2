@@ -8,7 +8,7 @@ namespace MatrixLib
 {
     public class Matrix2D : IEquatable<Matrix2D>
     {
-        #region === Int ===
+        #region === Ints ===
 
         private int A { get; init; }
         private int B { get; init; }
@@ -60,6 +60,9 @@ namespace MatrixLib
 
         public override int GetHashCode() => HashCode.Combine(A, B, C, D);
 
+        #endregion
+
+        #region === Operators ===
 
         public static bool operator == (Matrix2D? left, Matrix2D? right)
         {
@@ -68,8 +71,56 @@ namespace MatrixLib
 
             return left.Equals(right);
         }
-        public static bool operator != (Matrix2D? left, Matrix2D? right) => !(left == right);
+        public static bool operator != (Matrix2D? left, Matrix2D? right) => 
+            !(left == right);
+        
+        public static Matrix2D operator + (Matrix2D left, Matrix2D right) => 
+            new(
+                left.A + right.A,
+                left.B + right.B,
+                left.C + right.C,
+                left.D + right.D
+                );
+        public static Matrix2D operator - (Matrix2D left, Matrix2D right) =>
+            new(
+                left.A - right.A,
+                left.B - right.B,
+                left.C - right.C,
+                left.D - right.D
+                );
+
+        public static Matrix2D operator * (Matrix2D left, Matrix2D right) =>
+            new(
+                left.A * right.A + left.B * right.C,
+                left.A * right.B + left.B * right.D,
+                left.C * right.A + left.D * right.C,
+                left.C * right.B + left.D * right.D
+                );
+
+        public static Matrix2D operator * (Matrix2D left, int s) =>
+            new(
+                left.A * s,
+                left.B * s,
+                left.C * s,
+                left.D * s
+                );
+
+
+        public static Matrix2D operator * (int s, Matrix2D left) =>
+            new(
+                left.A * s,
+                left.B * s,
+                left.C * s,
+                left.D * s
+                );
+
+        public static Matrix2D Parse(string s)
+        {
+            throw new NotImplementedException();
+        }
+
 
         #endregion
+
     }
 }
